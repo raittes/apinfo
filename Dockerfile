@@ -7,4 +7,4 @@ ADD . /apinfo
 RUN cd /apinfo && bundle install
 
 WORKDIR /apinfo
-CMD ["/usr/local/bin/puma", "-C", "config/puma.rb"]
+CMD ["puma", "-C", "config/puma.rb"]
