@@ -1,3 +1,18 @@
+version: 2
+jobs:
+  test:
+    machine: true
+    steps:
+      - checkout
+      - run: echo "ok"
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+
 notify:
   webhooks:
     - url: https://samson.rdops.systems/integrations/circleci/567b71e8a032927f9b5e5de2b916d27d
+
