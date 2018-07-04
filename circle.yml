@@ -14,5 +14,4 @@ workflows:
 
 notify:
   webhooks:
-    - url: https://samson.rdops.systems/integrations/circleci/567b71e8a032927f9b5e5de2b916d27d
-
+    - url: https://samson.rdops.systems/integrations/circleci/00fda842a2d360df945321f71408db4e
