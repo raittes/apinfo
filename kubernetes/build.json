@@ -1,0 +1,11 @@
+{
+  "build": {
+    "name": "apinfo",
+    "image_name": "apinfo",
+    "git_sha": "${CIRCLE_SHA1}",
+    "git_ref": "${CIRCLE_SHA1}",
+    "docker_repo_digest": "${DOCKER_DIGEST}",
+    "dockerfile": "Dockerfile",
+    "external_url": "https://hub.docker.com/r/raittes/apinfo/"
+  }
+}
