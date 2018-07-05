@@ -6,8 +6,16 @@ jobs:
       - checkout
       - run:
           name: Build
-          command: docker build -t apinfo .
-      - run: echo "ok"
+          command: docker build -t apinfo:master .
+      - run:
+          name: Deploy
+          command: |
+              docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+              docker tag ${CIRCLE_PROJECT_REPONAME}:master raittes/${CIRCLE_PROJECT_REPONAME}:master
+              export DOCKER_DIGEST=$(docker push raittes/${CIRCLE_PROJECT_REPONAME}:master | tail -n1 | awk '{print $3}')
+              echo ${DOCKER_DIGEST}
+              envsubst < kubernetes/build.json > payload.json
+              curl -d @payload.json -H "Authorization: Bearer ${SAMSON_TOKEN}" -H "Content-Type: application/json" https://samson.rdops.systems/projects/${CIRCLE_PROJECT_REPONAME}/builds.json
 
 workflows:
   version: 2
