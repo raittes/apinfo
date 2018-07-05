@@ -1,5 +1,12 @@
 version: 2
 jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: docker build -t apinfo:${CIRCLE_TAG} .
   test:
     machine: true
     steps:
@@ -8,8 +15,9 @@ jobs:
 
 workflows:
   version: 2
-  test:
+  build-n-test:
     jobs:
+      - build
       - test
 
 notify:
