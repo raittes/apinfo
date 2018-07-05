@@ -1,16 +1,19 @@
 version: 2
 jobs:
-  test:
+  build:
     machine: true
     steps:
       - checkout
-      - run: echo "ok"
+      - run:
+          name: Build
+          command: docker build -t apinfo:${CIRCLE_TAG} .
+      - run: echo "test ok"
 
 workflows:
   version: 2
-  test:
+  build:
     jobs:
-      - test
+      - build
 
 notify:
   webhooks:
